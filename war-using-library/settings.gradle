@@ -1,0 +1,3 @@
+// Set different dirs for the projects
+include 'example-library'
+project(':example-library').projectDir = new File(settingsDir, '../library')

@@ -1,0 +1,37 @@
+apply plugin: 'java'
+
+buildscript {
+	repositories {
+		maven {
+			url 'http://dl.bintray.com/steffenschaefer/maven'
+		}
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+	}
+}
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+apply plugin: 'war'
+apply plugin: 'gwt'
+
+repositories { mavenCentral() }
+
+dependencies {
+	compile project(':example-library')
+}
+
+gwt {
+	gwtVersion='2.7.0'
+
+	modules 'de.richsource.gradle.plugins.gwt.example.Example'
+	
+	println 'sourceSet: ' + project(':example-library').sourceSets.main.allJava.srcDirs
+	src += files(project(':example-library').sourceSets.main.allJava.srcDirs) + files(project(':example-library').sourceSets.main.output.resourcesDir)
+
+	// uncomment the followowing to make it work
+	// src += files('../library/src/main/java')
+}

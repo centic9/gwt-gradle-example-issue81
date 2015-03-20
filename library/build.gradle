@@ -1,0 +1,23 @@
+buildscript {
+	repositories {
+		maven {
+			url 'http://dl.bintray.com/steffenschaefer/maven'
+		}
+		mavenCentral()
+	}
+	dependencies {
+		classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'gwt-base'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories { mavenCentral() }
+
+gwt {
+	gwtVersion='2.7.0'
+}
